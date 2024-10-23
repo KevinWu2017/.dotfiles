@@ -25,7 +25,3 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[https]
-	proxy = https.proxy=http://iscs1411:14111234@202.120.40.41:9081
-[http]
-	proxy = http.proxy=http://iscs1411:14111234@202.120.40.41:9081
