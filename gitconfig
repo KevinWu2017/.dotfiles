@@ -1,0 +1,31 @@
+[user]
+	name = cpwu
+	email = cpwu2017@126.com
+[i18n]
+	commitencoding = utf-8
+	logoutputencoding = utf-8
+[core]
+    pager = delta
+	autocrlf = input
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[https]
+	proxy = https.proxy=http://iscs1411:14111234@202.120.40.41:9081
+[http]
+	proxy = http.proxy=http://iscs1411:14111234@202.120.40.41:9081
