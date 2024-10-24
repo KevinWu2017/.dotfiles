@@ -1,6 +1,13 @@
 This is the repository where I store the basic dotfiles and configurations for environment setup. The dotfile configuration bases on Dotbot.
 
 # Installation
+Note: proxy may need to be set to use Github clone and curl download Credientials may be required.
+
+## oh-my-zsh
+Zsh shall be installed for convience.
+```shell
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
 
 ## dotfiles
 This repository is stored on both [Github](https://github.com/KevinWu2017/.dotfiles.git) & [Gitee](https://github.com/anishathalye/dotbot.git). To use this repository:
@@ -21,7 +28,12 @@ git pull https://gitee.com/winnochan/dotbot.git
 
 ## Packages
 The following command can automatically install several useful modern Unix packages.
-Note: proxy may need to be set to use Github clone & credientials may be required.
 ```shell
 ./pkg_install.sh
+```
+
+## Font
+For MacOS which acts as ssh client, the nerd font can be installed.
+```shell
+brew install font-hack-nerd-font
 ```
