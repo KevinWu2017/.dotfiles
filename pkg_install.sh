@@ -7,12 +7,26 @@ declare -A common_patterns=(
   [linux_aarch64]="aarch64-unknown-linux-gnu"
 )
 
+declare -A zellij_patterns=(
+  [darwin_aarch64]="aarch64-apple-darwin"
+  [linux_x86_64]="x86_64-unknown-linux-musl"
+  [linux_aarch64]="aarch64-unknown-linux-musl"
+)
+
+declare -A nvim_patterns=(
+  [darwin_aarch64]="macos-arm64"
+  [linux_x86_64]="linux64"
+  [linux_aarch64]="Not Supported"
+)
+
 # Top-level associative array linking repositories to their nested pattern arrays
 declare -A REPOS_PATTERNS=(
   ["dandavison/delta"]="common_patterns"
   ["sharkdp/bat"]="common_patterns"
   ["lsd-rs/lsd"]="common_patterns"
   ["bootandy/dust"]="common_patterns"
+  ["zellij-org/zellij"]="zellij_patterns"
+  ["neovim/neovim"]="nvim_patterns"
 )
 
 # Determine the current OS and architecture
@@ -58,7 +72,8 @@ install_latest_release() {
 
   # Extract the download URL matching the pattern
   DOWNLOAD_URL=$(echo "$LATEST_RELEASE" | \
-    grep -m 1 -E "browser_download_url.*$PATTERN" | \
+    grep -E "browser_download_url.*$PATTERN" | \
+    grep -v "sha256sum" | \
     sed -n 's/.*"\(https[^"]*\)".*/\1/p')
 
   if [[ -z "$DOWNLOAD_URL" ]]; then
@@ -70,7 +85,7 @@ install_latest_release() {
   FILE_NAME=$(basename "$DOWNLOAD_URL")
   DEST_PATH="./pkg/$FILE_NAME"
   echo "Downloading $FILE_NAME from $DOWNLOAD_URL to $DEST_PATH ..."
-  curl -L -o "$DEST_PATH" "$DOWNLOAD_URL"
+  # curl -L -o "$DEST_PATH" "$DOWNLOAD_URL"
 
   echo "Download complete: $FILE_NAME"
 
@@ -85,8 +100,13 @@ install_latest_release() {
     mkdir -p ~/.local/bin/
 
     # Find executable files in the extracted directory and copy them to ~/.local/bin/ (force overwrite)
-    find "./pkg/$EXTRACTED_DIR" -type f -executable -exec cp -f {} ~/.local/bin/ \;
-
+    find "./pkg/$EXTRACTED_DIR" -type f -executable ! -name "*.sh" | while read -r EXECUTABLE; do
+      LINK_NAME="$HOME/.local/bin/$(basename "$EXECUTABLE")"
+      FULL_PATH="$(pwd)/$EXECUTABLE"
+      echo "Creating symlink: $LINK_NAME -> $FULL_PATH"
+      ln -sf "$FULL_PATH" "$LINK_NAME"
+    done
+    
     echo "Copied executables to ~/.local/bin/"
   else
     echo "$FILE_NAME is not a .tar.gz file, skipping extraction."
@@ -101,5 +121,3 @@ for REPO in "${!REPOS_PATTERNS[@]}"; do
   PATTERN=$(get_pattern_for_repo "$REPO")
   install_latest_release "$REPO" "$PATTERN"
 done
-
-source ~/.zshrc

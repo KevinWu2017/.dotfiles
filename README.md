@@ -13,15 +13,15 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 This repository is stored on both [Github](https://github.com/KevinWu2017/.dotfiles.git) & [Gitee](https://github.com/anishathalye/dotbot.git). To use this repository:
 - Github
 ```shell
-git clone https://github.com/KevinWu2017/.dotfiles.git
-cd .dotfiles
+git clone https://github.com/KevinWu2017/.dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
 git pull https://github.com/anishathalye/dotbot.git
 ./install
 ```
 - Gitee
 ```shell
-git clone https://gitee.com/kevinwu2017/.dotfiles.git
-cd .dotfiles
+git clone https://gitee.com/kevinwu2017/.dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
 git pull https://gitee.com/winnochan/dotbot.git
 ./install
 ```
@@ -30,6 +30,11 @@ git pull https://gitee.com/winnochan/dotbot.git
 The following command can automatically install several useful modern Unix packages.
 ```shell
 ./pkg_install.sh
+ln -sf ~/.dotfiles/nvim ~/.config/nvim
+```
+The newly installed packages may not be awared for the autocompeletion before:
+```shell
+source ~/.zshrc
 ```
 
 ## Font
