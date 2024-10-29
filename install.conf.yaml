@@ -17,5 +17,5 @@
       force: true
       path: vimrc
     ~/.zshrc: 
-      froce: true
+      force: true
       path: zshrc
