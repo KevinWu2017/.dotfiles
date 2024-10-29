@@ -99,12 +99,16 @@ install_latest_release() {
   # If file type is .tar.gz，extract the contents
   if [[ "$FILE_NAME" == *.tar.gz ]]; then
     echo "Extracting $FILE_NAME ..."
-    tar -xzf "$DEST_PATH" -C ./pkg
     EXTRACTED_DIR=$(tar -tf "$DEST_PATH" | head -n 1 | cut -f1 -d"/")
-    echo "Extraction complete: ./pkg/$EXTRACTED_DIR"
-
-    # create the target directory ~/.local/bin/ (if it doesn't exist)
-    mkdir -p ~/.local/bin/
+    TARGET_EXTRACTED_DIR=$(echo "$FILE_NAME" | sed 's/\.tar\.gz$//')
+    if [[ "$EXTRACTED_DIR" == "$TARGET_EXTRACTED_DIR" ]]; then
+      tar -xzf "$DEST_PATH" -C ./pkg
+    else
+      EXTRACTED_DIR=$TARGET_EXTRACTED_DIR
+      mkdir -p ./pkg/$EXTRACTED_DIR
+      tar -xzf "$DEST_PATH" -C ./pkg/$EXTRACTED_DIR
+    fi
+    echo "Extraction complete: ./pkg/$TARGET_EXTRACTED_DIR"
 
     # Find executable files in the extracted directory and copy them to ~/.local/bin/ (force overwrite)
     find "./pkg/$EXTRACTED_DIR" -type f -executable ! -name "*.sh" | while read -r EXECUTABLE; do
@@ -122,9 +126,23 @@ install_latest_release() {
 
 # Create the package directory if it doesn't exist
 mkdir -p ./pkg
+# create the target directory ~/.local/bin/ (if it doesn't exist)
+mkdir -p ~/.local/bin/
 
 # Loop over the repositories and download the appropriate assets
 for REPO in "${!REPOS_PATTERNS[@]}"; do
-  PATTERN=$(get_pattern_for_repo "$REPO")
-  install_latest_release "$REPO" "$PATTERN"
+  echo "=============================================================================="
+  read -p "Do you want to install the latest release for $REPO? (y/n) " choice
+  case "$choice" in 
+    y|Y ) 
+      PATTERN=$(get_pattern_for_repo "$REPO")
+      install_latest_release "$REPO" "$PATTERN"
+      ;;
+    n|N ) 
+      echo "Skipping $REPO"
+      ;;
+    * ) 
+      echo "Invalid choice. Skipping $REPO"
+      ;;
+  esac
 done
