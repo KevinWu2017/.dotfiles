@@ -15,14 +15,14 @@ This repository is stored on both [Github](https://github.com/KevinWu2017/.dotfi
 ```shell
 git clone https://github.com/KevinWu2017/.dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-git pull https://github.com/anishathalye/dotbot.git
+git clone https://github.com/anishathalye/dotbot.git
 ./install
 ```
 - Gitee
 ```shell
 git clone https://gitee.com/kevinwu2017/.dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-git pull https://gitee.com/winnochan/dotbot.git
+git clone https://gitee.com/winnochan/dotbot.git
 ./install
 ```
 
