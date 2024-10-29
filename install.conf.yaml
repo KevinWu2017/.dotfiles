@@ -1,9 +1,21 @@
 - clean: ['~']
 
 - link:
-    ~/.profile: profile
-    ~/.bashrc: bashrc
-    ~/.bash_logout: bash_logout
-    ~/.gitconfig: gitconfig
-    ~/.vimrc: vimrc
-    ~/.zshrc: zshrc
+    ~/.profile:
+      force: true
+      path: profile
+    ~/.bashrc: 
+      force: true
+      path: bashrc
+    ~/.bash_logout: 
+      force: true
+      path: bash_logout
+    ~/.gitconfig: 
+      force: true
+      path: gitconfig
+    ~/.vimrc: 
+      force: true
+      path: vimrc
+    ~/.zshrc: 
+      froce: true
+      path: zshrc
