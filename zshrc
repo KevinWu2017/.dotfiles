@@ -104,8 +104,9 @@ source $ZSH/oh-my-zsh.sh
 export PATH=$HOME/.local/bin/:$PATH
 
 # CUDA env setting
-export PATH=/usr/local/cuda/bin:$PATH
-export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+export CUDA_HOME=/usr/local/cuda
+export PATH=$CUDA_HOME/bin:$PATH
+export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
 
 # Enable UTF-8 in git log
 export LESSCHARSET=utf-8
