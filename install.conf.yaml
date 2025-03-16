@@ -3,19 +3,19 @@
 - link:
     ~/.profile:
       force: true
-      path: profile
+      path: dotfiles/profile
     ~/.bashrc: 
       force: true
-      path: bashrc
+      path: dotfiles/bashrc
     ~/.bash_logout: 
       force: true
-      path: bash_logout
+      path: dotfiles/bash_logout
     ~/.gitconfig: 
       force: true
-      path: gitconfig
+      path: dotfiles/gitconfig
     ~/.vimrc: 
       force: true
-      path: vimrc
+      path: dotfiles/vimrc
     ~/.zshrc: 
       force: true
-      path: zshrc
+      path: dotfiles/zshrc
