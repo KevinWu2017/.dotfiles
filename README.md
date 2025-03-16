@@ -29,7 +29,9 @@ git clone https://gitee.com/winnochan/dotbot.git
 ## Packages
 The following command can automatically install several useful modern Unix packages.
 ```shell
-./pkg_install.sh
+cd pkg-management
+./brew-install.sh
+./pkg-install.sh -a
 ln -sf ~/.dotfiles/nvim ~/.config/nvim
 ```
 The newly installed packages may not be awared for the autocompeletion before:
