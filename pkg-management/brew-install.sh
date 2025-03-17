@@ -1,3 +1,9 @@
+# check if brew is installed 
+if command -v brew &> /dev/null; then
+    echo "brew is already installed, skip installation"
+    exit 0
+fi
+
 export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
 export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
 export HOMEBREW_INSTALL_FROM_API=1
