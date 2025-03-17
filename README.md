@@ -8,6 +8,12 @@ Zsh shall be installed for convience.
 ```shell
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
+or use the tuna mirror
+```shell
+git clone https://mirrors.tuna.tsinghua.edu.cn/git/ohmyzsh.git
+cd ohmyzsh/tools
+REMOTE=https://mirrors.tuna.tsinghua.edu.cn/git/ohmyzsh.git sh install.sh
+```
 
 ## dotfiles
 This repository is stored on both [Github](https://github.com/KevinWu2017/.dotfiles.git) & [Gitee](https://github.com/anishathalye/dotbot.git). To use this repository:
@@ -24,6 +30,11 @@ git clone https://gitee.com/kevinwu2017/.dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 git clone https://gitee.com/winnochan/dotbot.git
 ./install
+```
+
+If the server is located in the lab's network, the following script can be used to load the alias dotfile:
+```shell
+./decrypt.sh
 ```
 
 ## Packages
