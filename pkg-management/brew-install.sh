@@ -1,5 +1,5 @@
 # check if brew is installed 
-if command -v brew &> /dev/null; then
+if [ -n "$(command -v brew)" ]; then
     echo "brew is already installed, skip installation"
     exit 0
 fi
