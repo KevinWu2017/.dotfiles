@@ -42,6 +42,7 @@ The following command can automatically install several useful modern Unix packa
 ```shell
 cd pkg-management
 ./brew-install.sh
+source ~/.zshrc
 ./pkg-install.sh -a
 ln -sf ~/.dotfiles/nvim ~/.config/nvim
 ```
