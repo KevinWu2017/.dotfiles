@@ -1,7 +1,8 @@
-# check if brew is installed 
+#!/bin/bash
+# check if brew is installed
 if [ -n "$(command -v brew)" ]; then
-    echo "brew is already installed, skip installation"
-    exit 0
+  echo "brew is already installed, skip installation"
+  exit 0
 fi
 
 export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
@@ -15,5 +16,5 @@ rm -rf brew-install
 test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
 test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-test -r ~/.bashrc && echo -e "\neval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
-test -r ~/.zshrc && echo -e "\neval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
+test -r ~/.bashrc && echo -e "\neval \"\$($(brew --prefix)/bin/brew shellenv)\"" >>~/.bashrc
+test -r ~/.zshrc && echo -e "\neval \"\$($(brew --prefix)/bin/brew shellenv)\"" >>~/.zshrc
