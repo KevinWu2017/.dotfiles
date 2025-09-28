@@ -44,6 +44,7 @@ cd pkg-management
 ./brew-install.sh
 source ~/.zshrc
 ./pkg-install.sh -a
+mkdir -p ~/.config
 ln -sf ~/.dotfiles/nvim ~/.config/nvim
 ```
 The newly installed packages may not be awared for the autocompeletion before:
